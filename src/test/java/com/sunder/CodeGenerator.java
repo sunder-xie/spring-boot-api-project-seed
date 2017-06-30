@@ -1,4 +1,6 @@
-import com.company.project.core.ProjectConstant;
+package com.sunder;
+
+import com.sunder.whats.core.ProjectConstant;
 import freemarker.template.TemplateExceptionHandler;
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.*;
@@ -15,9 +17,9 @@ import java.util.*;
  */
 public class CodeGenerator {
     //JDBC配置，请修改为你项目的实际配置
-    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/test";
+    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/boot";
     private static final String JDBC_USERNAME = "root";
-    private static final String JDBC_PASSWORD = "123456";
+    private static final String JDBC_PASSWORD = "root";
     private static final String JDBC_DIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
 
     private static final String PROJECT_PATH = System.getProperty("user.dir");//项目在硬盘上的基础路径
@@ -29,13 +31,13 @@ public class CodeGenerator {
     private static final String BASE_PACKAGE_PATH = "\\com\\company\\project";//项目基础包路径
     private static final String PACKAGE_PATH_SERVICE = BASE_PACKAGE_PATH + "\\service\\";//生成的Service存放路径
     private static final String PACKAGE_PATH_SERVICE_IMPL = BASE_PACKAGE_PATH + "\\service\\impl\\";//生成的Service实现存放路径
-    private static final String PACKAGE_PATH_CONTROLLER = BASE_PACKAGE_PATH + "\\web\\";//生成的Controller实现存放路径
+    private static final String PACKAGE_PATH_CONTROLLER = BASE_PACKAGE_PATH + "\\web\\controller\\";//生成的Controller实现存放路径
 
     private static final String AUTHOR = "CodeGenerator";//@author
     private static final String DATE = new SimpleDateFormat("yyyy/MM/dd").format(new Date());//@date
 
     public static void main(String[] args) {
-        genCode("输入表名");
+        genCode("user");
     }
 
     public static void genCode(String... tableNames) {
@@ -157,8 +159,8 @@ public class CodeGenerator {
             if (!file.getParentFile().exists()) {
                 file.getParentFile().mkdirs();
             }
-            //cfg.getTemplate("controller-restful.ftl").process(data, new FileWriter(file));
-            cfg.getTemplate("controller.ftl").process(data, new FileWriter(file));
+            cfg.getTemplate("controller-restful.ftl").process(data, new FileWriter(file));
+//            cfg.getTemplate("controller.ftl").process(data, new FileWriter(file));
 
             System.out.println(modelNameUpperCamel + "Controller.java 生成成功");
         } catch (Exception e) {

@@ -1,6 +1,7 @@
-package com.company.project.configurer;
+package com.sunder.whats.configurer;
 
 import com.github.pagehelper.PageHelper;
+import com.sunder.whats.core.ProjectConstant;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -15,8 +16,6 @@ import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.util.Properties;
 
-import static com.company.project.core.ProjectConstant.*;
-
 /**
  * Mybatis & Mapper & PageHelper 配置
  */
@@ -29,7 +28,7 @@ public class MybatisConfigurer {
     public SqlSessionFactory sqlSessionFactoryBean() throws Exception {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
-        bean.setTypeAliasesPackage(MODEL_PACKAGE);
+        bean.setTypeAliasesPackage(ProjectConstant.MODEL_PACKAGE);
 
         //分页插件
         PageHelper pageHelper = new PageHelper();
@@ -57,10 +56,10 @@ public class MybatisConfigurer {
         public MapperScannerConfigurer mapperScannerConfigurer() {
             MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
             mapperScannerConfigurer.setSqlSessionFactoryBeanName("sqlSessionFactoryBean");
-            mapperScannerConfigurer.setBasePackage(MAPPER_PACKAGE);
+            mapperScannerConfigurer.setBasePackage(ProjectConstant.MAPPER_PACKAGE);
             //配置通用mappers
             Properties properties = new Properties();
-            properties.setProperty("mappers", MAPPER_INTERFACE_REFERENCE);
+            properties.setProperty("mappers", ProjectConstant.MAPPER_INTERFACE_REFERENCE);
             properties.setProperty("notEmpty", "false");
             properties.setProperty("IDENTITY", "MYSQL");
             mapperScannerConfigurer.setProperties(properties);
