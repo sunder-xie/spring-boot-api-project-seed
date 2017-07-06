@@ -3,7 +3,7 @@ package com.sunder.whats.web.utils;
 import java.security.MessageDigest;
 
 /**
- * Created by shuzheng on 2017/1/19.
+ * Created by sunder on 2017/1/19.
  */
 public class MD5Util {
 

@@ -5,7 +5,7 @@ import java.util.Enumeration;
 
 /**
  * request工具类
- * Created by ZhangShuzheng on 2016/12/12.
+ * Created by sunder on 2016/12/12.
  */
 public class RequestUtil {
 
