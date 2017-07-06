@@ -1,5 +1,7 @@
 package com.sunder.whats.utils;
 
+import org.apache.commons.lang3.StringUtils;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,15 +10,7 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 
 /**
- * @author 作者 zsj
- * @date 创建时间：2016年11月29日 上午10:50:04
- * @version 1.0
- * @parameter
- * @since
- * @return
- * 
- *         Cookie 工具类
- *
+ *  Cookie 工具类
  */
 public class CookieUtils {
 
@@ -229,7 +223,7 @@ public class CookieUtils {
 			}
 			final String[] domains = serverName.split("\\.");
 			int len = domains.length;
-			if (HttpClientUtils.isDomain(serverName)) {
+			if (isDomain(serverName)) {
 				if (len > 3) {
 					// www.xxx.com.cn
 					domainName = "." + domains[len - 3] + "."
@@ -257,7 +251,18 @@ public class CookieUtils {
 //		}
 		return domainName;
 	}
-
+	// 判断获取到的host是否是域名
+	public static boolean isDomain(String host) {
+		boolean flag = false;
+		String[] array = host.split("\\.");
+		for (String num : array) {
+			if (!StringUtils.isNumeric(num)) {
+				flag = true;
+				break;
+			}
+		}
+		return flag;
+	}
 	public static void main(String[] args) {
 		System.out.println(".www.ddd".startsWith("."));
 	}
