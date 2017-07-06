@@ -20,6 +20,7 @@ public class UserController {
     @Resource
     private UserService userService;
 
+
     @PostMapping
     public Result add(User user) {
         userService.save(user);

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="renderer" content="webkit"/>
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<title>登录</title>
+<link rel="stylesheet" href="../../css/style.css" th:href="@{/css/style.css}"/>
+</head>
+
+<body>
+	<div id='app' hidden="hidden">false</div>
+	<section class="main-cantainer">
+		<!-- <div class="page-title">
+			<span class='floatl'>登录</span>
+		</div> -->
+		<form id="login_from" method="post" action="login/loginByPwd"
+			onsubmit="return validate_form()">
+			<div class="form-group">
+				<label for="" class="floatl">用户名:</label> <input type="text"
+					class='form-input floatr' name="phone" id="phone"
+					placeholder="请输入手机号"/>
+			</div>
+			<div class="form-group">
+				<label for="" class="floatl">密码:</label> <input type="password"
+					class='form-input floatr' name="password" id="password"
+					placeholder="请输入密码">
+			</div>
+			<div class='btn-box floatr' style="width: 50%">
+				<button type="button" onclick="location.href='signIn'"
+					class="form-btn success-btn">注册</button>
+			</div>
+			<div class='btn-box floatr' style="width: 50%">
+				<button type="submit" class="form-btn cancel-btn">登录</button>
+			</div>
+		</form>
+		<!--<div th:replace="~{layout/contextPath :: contextPath}"/>-->
+	</section>
+	<script src="../../js/lib/jquery.js" th:src="@{/js/lib/jquery.js}"/>
+	<script src="../../js/common.js" th:src="@{/js/common.js}"/>
+	<script src="../../js/plug/plug-form.js" th:src="@{/js/plug/plug-form.js}"/>
+	<script src="../../js/plug/httpPath.js" th:src="@{/js/plug/httpPath.js}"/>
+	<script src="../../js/userinfo_validate.js" th:src="@{/js/userinfo_validate.js}"/>
+	<script src="../../js/jquery.cookie.js" th:src="@{/js/jquery.cookie.js}"/>
+
+</body>
+<script type="text/javascript" th:inline="javascript">
+var  user = [[${session.user}]];
+window.onload=function(){
+	user = [[${session.user}]];
+	if(user){
+		window.location.href=contentpath+"/user/meetindex";
+	}else{
+
+	}
+};
+
+function validate_form(){
+	if(!validate_phone("phone")){
+		return false;
+	}
+	if(!validate_empty('password',"密码")){
+		return false;
+	}
+	return true;
+}
+</script>
+</html>

@@ -1,6 +1,8 @@
 package com.sunder.whats.service.impl;
 
 import com.sunder.whats.core.AbstractService;
+import com.sunder.whats.core.Result;
+import com.sunder.whats.core.ResultGenerator;
 import com.sunder.whats.mapper.UserMapper;
 import com.sunder.whats.model.User;
 import com.sunder.whats.service.UserService;
@@ -17,4 +19,9 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
     @Autowired
     private UserMapper userMapper;
 
+    @Override
+    public Result loginByPwd(User user) { //TODO demo 没有进行任务加密和校验
+        User selectOne = userMapper.selectOne(user);
+        return ResultGenerator.genSuccessResult(selectOne);
+    }
 }
