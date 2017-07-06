@@ -2,8 +2,8 @@ package com.sunder.whats.web.controller.login;
 
 import com.sunder.whats.core.Result;
 import com.sunder.whats.core.ResultCode;
-import com.sunder.whats.model.User;
-import com.sunder.whats.service.UserService;
+import com.sunder.whats.entity.User;
+import com.sunder.whats.service.user.UserService;
 import com.sunder.whats.web.constant.PageEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

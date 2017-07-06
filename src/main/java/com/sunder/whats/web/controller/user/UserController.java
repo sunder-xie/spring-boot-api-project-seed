@@ -2,8 +2,8 @@ package com.sunder.whats.web.controller.user;
 
 import com.sunder.whats.core.Result;
 import com.sunder.whats.core.ResultGenerator;
-import com.sunder.whats.model.User;
-import com.sunder.whats.service.UserService;
+import com.sunder.whats.entity.User;
+import com.sunder.whats.service.user.UserService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.*;

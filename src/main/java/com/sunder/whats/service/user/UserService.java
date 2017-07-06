@@ -1,8 +1,8 @@
-package com.sunder.whats.service;
+package com.sunder.whats.service.user;
 
 import com.sunder.whats.core.IService;
 import com.sunder.whats.core.Result;
-import com.sunder.whats.model.User;
+import com.sunder.whats.entity.User;
 
 
 /**

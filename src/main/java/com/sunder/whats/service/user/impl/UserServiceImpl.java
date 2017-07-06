@@ -1,11 +1,11 @@
-package com.sunder.whats.service.impl;
+package com.sunder.whats.service.user.impl;
 
 import com.sunder.whats.core.AbstractService;
 import com.sunder.whats.core.Result;
 import com.sunder.whats.core.ResultGenerator;
 import com.sunder.whats.mapper.UserMapper;
-import com.sunder.whats.model.User;
-import com.sunder.whats.service.UserService;
+import com.sunder.whats.entity.User;
+import com.sunder.whats.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
