@@ -6,6 +6,7 @@ import com.sunder.whats.entity.User;
 import com.sunder.whats.service.user.UserService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.sunder.whats.web.controller.base.BaseController;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -16,7 +17,7 @@ import java.util.List;
 */
 @RestController
 @RequestMapping("/user")
-public class UserController {
+public class UserController extends BaseController {
     @Resource
     private UserService userService;
 

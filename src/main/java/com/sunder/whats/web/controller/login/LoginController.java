@@ -5,6 +5,7 @@ import com.sunder.whats.core.ResultCode;
 import com.sunder.whats.entity.User;
 import com.sunder.whats.service.user.UserService;
 import com.sunder.whats.web.constant.PageEnum;
+import com.sunder.whats.web.controller.base.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("/login")
-public class LoginController {
+public class LoginController extends BaseController {
 
     @Autowired
     private UserService userService;
