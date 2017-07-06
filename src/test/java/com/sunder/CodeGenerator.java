@@ -19,25 +19,25 @@ public class CodeGenerator {
     //JDBC配置，请修改为你项目的实际配置
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/boot";
     private static final String JDBC_USERNAME = "root";
-    private static final String JDBC_PASSWORD = "root";
+    private static final String JDBC_PASSWORD = "123";
     private static final String JDBC_DIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
 
     private static final String PROJECT_PATH = System.getProperty("user.dir");//项目在硬盘上的基础路径
-    private static final String TEMPLATE_FILE_PATH = PROJECT_PATH + "\\src\\test\\resources\\generator\\template";//模板位置
+    private static final String TEMPLATE_FILE_PATH = PROJECT_PATH + "/src/test/resources/generator/template";//模板位置
 
-    private static final String JAVA_PATH = "\\src\\main\\java"; //java文件路径
-    private static final String RESOURCES_PATH = "\\src\\main\\resources";//资源文件路径
+    private static final String JAVA_PATH = "/src/main/java"; //java文件路径
+    private static final String RESOURCES_PATH = "/src/main/resources";//资源文件路径
 
-    private static final String BASE_PACKAGE_PATH = "\\com\\company\\project";//项目基础包路径
-    private static final String PACKAGE_PATH_SERVICE = BASE_PACKAGE_PATH + "\\service\\";//生成的Service存放路径
-    private static final String PACKAGE_PATH_SERVICE_IMPL = BASE_PACKAGE_PATH + "\\service\\impl\\";//生成的Service实现存放路径
-    private static final String PACKAGE_PATH_CONTROLLER = BASE_PACKAGE_PATH + "\\web\\controller\\";//生成的Controller实现存放路径
+    private static final String BASE_PACKAGE_PATH = "/com/sunder/whats";//项目基础包路径
+    private static final String PACKAGE_PATH_SERVICE = BASE_PACKAGE_PATH + "/service/";//生成的Service存放路径
+    private static final String PACKAGE_PATH_SERVICE_IMPL = BASE_PACKAGE_PATH + "/service/impl/";//生成的Service实现存放路径
+    private static final String PACKAGE_PATH_CONTROLLER = BASE_PACKAGE_PATH + "/web/controller/";//生成的Controller实现存放路径
 
     private static final String AUTHOR = "CodeGenerator";//@author
     private static final String DATE = new SimpleDateFormat("yyyy/MM/dd").format(new Date());//@date
 
     public static void main(String[] args) {
-        genCode("user");
+        genCode("location");
     }
 
     public static void genCode(String... tableNames) {

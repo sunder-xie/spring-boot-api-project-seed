@@ -1,4 +1,4 @@
-package com.sunder.whats.web.controller;
+package com.sunder.whats.web.controller.common;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author xieshengrong
  */
 @Controller
-@RequestMapping("page")
+@RequestMapping("/page")
 public class PageController {
 	/**
 	 * 页面跳转通用action

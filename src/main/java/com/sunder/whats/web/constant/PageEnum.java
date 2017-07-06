@@ -1,4 +1,4 @@
-package com.sunder.whats.web.controller.constant;
+package com.sunder.whats.web.constant;
 
 /**
  * Created by sunder on 2017/7/6.

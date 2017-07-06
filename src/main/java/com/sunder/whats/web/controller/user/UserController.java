@@ -1,4 +1,4 @@
-package com.sunder.whats.web.controller;
+package com.sunder.whats.web.controller.user;
 
 import com.sunder.whats.core.Result;
 import com.sunder.whats.core.ResultGenerator;
