@@ -1,88 +1,138 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="百度地图,百度地图API，百度地图自定义工具，百度地图所见即所得工具" />
-    <meta name="description" content="百度地图API自定义地图，帮助用户在可视化操作下生成百度地图" />
-    <title>百度地图API自定义地图</title>
-    <!--引用百度地图API-->
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=EPpDgqeC3vaGXob68V5XkqiSM2PGkggz"></script>
-  </head>
-  
-  <body>
-    <!--百度地图容器-->
-    <div style="width:700px;height:550px;border:#ccc solid 1px;font-size:12px" id="map"></div>
-    
-  </body>
-  <script type="text/javascript">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="keywords" content="百度地图,百度地图API，百度地图自定义工具，百度地图所见即所得工具" />
+  <meta name="description" content="百度地图API自定义地图，帮助用户在可视化操作下生成百度地图" />
+  <title>百度地图API自定义地图</title>
+  <!--引用百度地图API-->
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=EPpDgqeC3vaGXob68V5XkqiSM2PGkggz"></script>
+</head>
+
+<body>
+<!--百度地图容器-->
+<div style="width:700px;height:550px;border:#ccc solid 1px;font-size:12px" id="map"></div>
+<div style="margin-top:10px;">
+  <label>车辆1经度</label>
+  <input type="text" id="lng_1"/>
+  <label>车辆1纬度</label>
+  <input type="text" id="lat_1"/>
+  <button onclick="moveCar(1)">移动车辆1</button>
+</div>
+
+<div style="margin-top:10px;">
+  <label>车辆2经度</label>
+  <input type="text" id="lng_2"/>
+  <label>车辆2纬度</label>
+  <input type="text" id="lat_2"/>
+  <button onclick="moveCar(2)">移动车辆2</button>
+</div>
+
+</body>
+<script type="text/javascript">
+    var pointArr =  new Array();
+    var car = new Array();
     //创建和初始化地图函数：
     function initMap(){
-      createMap();//创建地图
-      setMapEvent();//设置地图事件
-      addMapControl();//向地图添加控件
-      addMapOverlay();//向地图添加覆盖物
+        createMap();//创建地图
+        setMapEvent();//设置地图事件
+        addMapControl();//向地图添加控件
+        addMapOverlay();//向地图添加覆盖物
     }
-    function createMap(){ 
-      map = new BMap.Map("map"); 
-      map.centerAndZoom(new BMap.Point(116.451304,39.877247),12);
+    function createMap(){
+        map = new BMap.Map("map");
+        map.centerAndZoom(new BMap.Point(121.459789,31.236529),17);
     }
     function setMapEvent(){
-      map.enableScrollWheelZoom();
-      map.enableKeyboard();
-      map.enableDragging();
-      map.enableDoubleClickZoom()
+        map.enableScrollWheelZoom();
+        map.enableKeyboard();
+        map.enableDragging();
+        map.enableDoubleClickZoom()
     }
     function addClickHandler(target,window){
-      target.addEventListener("click",function(){
-        target.openInfoWindow(window);
-      });
+        target.addEventListener("click",function(){
+            target.openInfoWindow(window);
+        });
     }
     function addMapOverlay(){
-      var markers = [
-        {content:"测试1",title:"地点1",imageOffset: {width:0,height:3},position:{lat:39.897842,lng:116.391226}},
-        {content:"测试2",title:"地点2",imageOffset: {width:0,height:3},position:{lat:39.90227,lng:116.415372}}
-      ];
-      for(var index = 0; index < markers.length; index++ ){
-        var point = new BMap.Point(markers[index].position.lng,markers[index].position.lat);
-        var marker = new BMap.Marker(point,{icon:new BMap.Icon("http://api.map.baidu.com/lbsapi/createmap/images/icon.png",new BMap.Size(20,25),{
-          imageOffset: new BMap.Size(markers[index].imageOffset.width,markers[index].imageOffset.height)
-        })});
-        var label = new BMap.Label(markers[index].title,{offset: new BMap.Size(25,5)});
-        var opts = {
-          width: 200,
-          title: markers[index].title,
-          enableMessage: false
+        var markers = [
+            {content:"危化品车1",title:"测试车辆1",imageOffset: {width:0,height:3},position:{lat:31.238768,lng:121.458316}},
+            {content:"危化品车2",title:"测试车辆2",imageOffset: {width:0,height:3},position:{lat:31.235062,lng:121.460364}}
+        ];
+        for(var index = 0; index < markers.length; index++ ){
+            var point = new BMap.Point(markers[index].position.lng,markers[index].position.lat);
+            pointArr.push(point);//添加点位到点位数组
+            var marker = new BMap.Marker(point,{icon:new BMap.Icon("http://api.map.baidu.com/lbsapi/createmap/images/icon.png",new BMap.Size(20,25),{
+                imageOffset: new BMap.Size(markers[index].imageOffset.width,markers[index].imageOffset.height)
+            })});
+            car.push(marker);//添加车辆到车辆数组
+            var label = new BMap.Label(markers[index].title,{offset: new BMap.Size(25,5)});
+            var opts = {
+                width: 200,
+                title: markers[index].title,
+                enableMessage: false
+            };
+            var infoWindow = new BMap.InfoWindow(markers[index].content,opts);
+            marker.setLabel(label);
+            addClickHandler(marker,infoWindow);
+            map.addOverlay(marker);
         };
-        var infoWindow = new BMap.InfoWindow(markers[index].content,opts);
-        marker.setLabel(label);
-        addClickHandler(marker,infoWindow);
-        map.addOverlay(marker);
-      };
-      var plOpts = [
-        {strokeColor:"#f00",strokeWeight:"4",strokeOpacity:"0.6"}
-      ];
-      var plPath = [
-        [
-          new BMap.Point(116.352132,39.925292),
-          new BMap.Point(116.414797,39.926842),
-          new BMap.Point(116.408473,39.901827),
-          new BMap.Point(116.457341,39.917103),
-          new BMap.Point(116.457341,39.917103),
-          new BMap.Point(116.457341,39.917103),
-          new BMap.Point(116.457341,39.917103)
-        ],
-      ];
-      for(var index = 0; index < plOpts.length; index++){
-        var polyline = new BMap.Polyline(plPath[index],plOpts[index]);
-        map.addOverlay(polyline);
-      }
+        var plOpts = [
+            {strokeColor:"#0ff",strokeWeight:"4",strokeOpacity:"1"},
+            {strokeColor:"#f00",strokeWeight:"4",strokeOpacity:"1"}
+        ];
+        var plPath = [
+            //蓝线
+            [
+                new BMap.Point(121.456896,31.234939),
+                new BMap.Point(121.459771,31.235927),
+                new BMap.Point(121.458927,31.237718),
+                new BMap.Point(121.458316,31.238768),
+                new BMap.Point(121.458316,31.238768),
+                new BMap.Point(121.458316,31.238768)
+            ],
+            //红线
+            [
+                new BMap.Point(121.454489,31.236714),
+                new BMap.Point(121.456411,31.237548),
+                new BMap.Point(121.458495,31.234553),
+                new BMap.Point(121.46031,31.235093),
+                new BMap.Point(121.46031,31.235093),
+                new BMap.Point(121.46031,31.235093),
+                new BMap.Point(121.46031,31.235093)
+            ],
+        ];
+        for(var index = 0; index < plOpts.length; index++){
+            var polyline = new BMap.Polyline(plPath[index],plOpts[index]);
+            map.addOverlay(polyline);
+        }
     }
     //向地图添加控件
     function addMapControl(){
-      var navControl = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:0});
-      map.addControl(navControl);
+        var navControl = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:0});
+        map.addControl(navControl);
     }
+    function moveCar(number){
+        if(number == 1){
+            pointArr[0].lng =  document.getElementById("lng_1").value=='' ? 121.458316 :  document.getElementById("lng_1").value;
+            pointArr[0].lat =  document.getElementById("lat_1").value=='' ? 31.238768 :  document.getElementById("lat_1").value;
+            car[0].setPosition(pointArr[0]);
+        }else if(number == 2){
+            pointArr[1].lng =  document.getElementById("lng_2").value=='' ? 121.460364 :  document.getElementById("lng_2").value;
+            pointArr[1].lat =  document.getElementById("lat_2").value=='' ? 31.235062 :  document.getElementById("lat_2").value;
+            car[1].setPosition(pointArr[1]);
+        }
+    };
     var map;
-      initMap();
-  </script>
+    initMap();
+    //下标0是测试车辆1，下标1是测试车辆2
+    // console.log(pointArr[1].lat);
+    //console.log(pointArr[1].lng);
+    //pointArr[0].lat = 31.234939;
+    document.getElementById("lng_1").value=pointArr[0].lng;
+    document.getElementById("lat_1").value=pointArr[0].lat;
+
+    document.getElementById("lng_2").value=pointArr[1].lng;
+    document.getElementById("lat_2").value=pointArr[1].lat;
+</script>
 </html>
