@@ -24,4 +24,9 @@ public class ResultGenerator {
                 .setCode(ResultCode.FAIL)
                 .setMessage(message);
     }
+    public static Result genFailResult() {
+        return new Result()
+                .setCode(ResultCode.FAIL)
+                .setMessage("查询失败");
+    }
 }
