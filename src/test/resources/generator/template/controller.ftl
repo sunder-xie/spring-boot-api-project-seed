@@ -1,8 +1,5 @@
-package ${basePackage}.web;
-import ${basePackage}.core.Result;
-import ${basePackage}.core.ResultGenerator;
-import ${basePackage}.model.${modelNameUpperCamel};
-import ${basePackage}.service.${modelNameUpperCamel}Service;
+package ${basePackage}.web.controller.${modelNameUpperCamel};
+
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,34 +19,34 @@ public class ${modelNameUpperCamel}Controller {
     private ${modelNameUpperCamel}Service ${modelNameLowerCamel}Service;
 
     @PostMapping("/add")
-    public Result add(${modelNameUpperCamel} ${modelNameLowerCamel}) {
+    public ResultCode<${modelNameLowerCamel}> add(${modelNameUpperCamel} ${modelNameLowerCamel}) {
         ${modelNameLowerCamel}Service.save(${modelNameLowerCamel});
-        return ResultGenerator.genSuccessResult();
-    }
+        return ResultCode.getSuccessReturn(${modelNameLowerCamel});
+}
 
     @PostMapping("/delete")
-    public Result delete(Integer id) {
+    public ResultCode<${modelNameLowerCamel}> delete(Integer id) {
         ${modelNameLowerCamel}Service.deleteById(id);
-        return ResultGenerator.genSuccessResult();
-    }
+        return ResultCode.getSuccessReturn(${modelNameLowerCamel});
+}
 
     @PostMapping("/update")
-    public Result update(${modelNameUpperCamel} ${modelNameLowerCamel}) {
+    public ResultCode<${modelNameLowerCamel}> update(${modelNameUpperCamel} ${modelNameLowerCamel}) {
         ${modelNameLowerCamel}Service.update(${modelNameLowerCamel});
-        return ResultGenerator.genSuccessResult();
+        return ResultCode.getSuccessReturn(${modelNameLowerCamel});
     }
 
     @PostMapping("/detail")
-    public Result detail(Integer id) {
+    public ResultCode<${modelNameLowerCamel}> detail(Integer id) {
         ${modelNameUpperCamel} ${modelNameLowerCamel} = ${modelNameLowerCamel}Service.findById(id);
-        return ResultGenerator.genSuccessResult(${modelNameLowerCamel});
+        return ResultCode.getSuccessReturn(${modelNameLowerCamel});
     }
 
     @PostMapping("/list")
-    public Result list(Integer page, Integer size) {
+    public ResultCode<PageInfo> list(Integer page, Integer size) {
         PageHelper.startPage(page, size);
         List<${modelNameUpperCamel}> list = ${modelNameLowerCamel}Service.findAll();
         PageInfo pageInfo = new PageInfo(list);
-        return ResultGenerator.genSuccessResult(pageInfo);
+        return ResultCode.getSuccessReturn(pageInfo);
     }
 }
