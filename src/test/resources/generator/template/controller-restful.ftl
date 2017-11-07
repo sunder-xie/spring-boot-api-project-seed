@@ -12,7 +12,8 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
-* Created by ${author} on ${date}.
+*${author}
+* ${date}.
 */
 @RestController
 @RequestMapping("${baseRequestMapping}")
@@ -21,30 +22,30 @@ public class ${modelNameUpperCamel}Controller {
     private ${modelNameUpperCamel}Service ${modelNameLowerCamel}Service;
 
     @PostMapping
-    public Result add(${modelNameUpperCamel} ${modelNameLowerCamel}) {
+    public ResultCode<${modelNameLowerCamel}> add(${modelNameUpperCamel} ${modelNameLowerCamel}) {
         ${modelNameLowerCamel}Service.save(${modelNameLowerCamel});
-        return ResultGenerator.genSuccessResult();
+        return ResultCode.getSuccessReturn(${modelNameLowerCamel});
     }
 
     @DeleteMapping("/{id}")
-    public Result delete(@PathVariable Integer id) {
+    public ResultCode<${modelNameLowerCamel}> delete(@PathVariable Integer id) {
         userService.deleteById(id);
-        return ResultGenerator.genSuccessResult();
+        return ResultCode.getSuccessReturn(${modelNameLowerCamel});
     }
 
     @PutMapping
-    public Result update(${modelNameUpperCamel} ${modelNameLowerCamel}) {
+    public ResultCode<${modelNameLowerCamel}> update(${modelNameUpperCamel} ${modelNameLowerCamel}) {
         ${modelNameLowerCamel}Service.update(${modelNameLowerCamel});
-        return ResultGenerator.genSuccessResult();
+        return ResultCode.getSuccessReturn(${modelNameLowerCamel});
     }
     @GetMapping("/{id}")
-    public Result detail(@PathVariable Integer id) {
+    public ResultCode<${modelNameLowerCamel}> detail(@PathVariable Integer id) {
         ${modelNameUpperCamel} ${modelNameLowerCamel} = ${modelNameLowerCamel}Service.findById(id);
-        return ResultGenerator.genSuccessResult(${modelNameLowerCamel});
+        return ResultCode.getSuccessReturn(${modelNameLowerCamel});
     }
 
     @GetMapping
-    public Result list(Integer page, Integer size) {
+    public ResultCode<PageInfo> list(Integer page, Integer size) {
         PageHelper.startPage(page, size);
         List<${modelNameUpperCamel}> list = ${modelNameLowerCamel}Service.findAll();
         PageInfo pageInfo = new PageInfo(list);
