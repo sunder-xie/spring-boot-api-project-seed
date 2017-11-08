@@ -17,7 +17,7 @@ import java.util.*;
  */
 public class CodeGenerator {
     //JDBC配置，请修改为你项目的实际配置
-    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/boot";
+    private static final String JDBC_URL = "jdbc:mysql://192.168.1.105:3306/panoramic";
     private static final String JDBC_USERNAME = "root";
     private static final String JDBC_PASSWORD = "root";
     private static final String JDBC_DIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
@@ -28,16 +28,16 @@ public class CodeGenerator {
     private static final String JAVA_PATH = "/src/main/java"; //java文件路径
     private static final String RESOURCES_PATH = "/src/main/resources";//资源文件路径
 
-    private static final String BASE_PACKAGE_PATH = "/com/sunder/whats/";//项目基础包路径
-    private static final String PACKAGE_PATH_SERVICE = BASE_PACKAGE_PATH + "/service/location/";//生成的Service存放路径
-    private static final String PACKAGE_PATH_SERVICE_IMPL = BASE_PACKAGE_PATH + "/service/location/impl/";//生成的Service实现存放路径
-    private static final String PACKAGE_PATH_CONTROLLER = BASE_PACKAGE_PATH + "/web/controller/location/";//生成的Controller实现存放路径
+    private static final String BASE_PACKAGE_PATH = "/com/cloud/";//项目基础包路径
+    private static final String PACKAGE_PATH_SERVICE = BASE_PACKAGE_PATH + "/service/";//生成的Service存放路径
+    private static final String PACKAGE_PATH_SERVICE_IMPL = BASE_PACKAGE_PATH + "/service/impl/";//生成的Service实现存放路径
+    private static final String PACKAGE_PATH_CONTROLLER = BASE_PACKAGE_PATH + "/web/controller/";//生成的Controller实现存放路径
 
     private static final String AUTHOR = "sunder";//@author
     private static final String DATE = new SimpleDateFormat("yyyy/MM/dd").format(new Date());//@date
 
     public static void main(String[] args) {
-        genCode("location");
+        genCode("panoramic_permission");
     }
 
     public static void genCode(String... tableNames) {
