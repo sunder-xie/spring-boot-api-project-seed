@@ -20,25 +20,25 @@ public class ${modelNameUpperCamel}Controller {
     private ${modelNameUpperCamel}Service ${modelNameLowerCamel}Service;
 
     @PostMapping("/add")
-    public ResultCode<${modelNameLowerCamel}> add(${modelNameUpperCamel} ${modelNameLowerCamel}) {
+    public ResultCode<${modelNameUpperCamel}> add(${modelNameUpperCamel} ${modelNameLowerCamel}) {
         ${modelNameLowerCamel}Service.save(${modelNameLowerCamel});
         return ResultCode.getSuccessReturn(${modelNameLowerCamel});
 }
 
     @PostMapping("/delete")
-    public ResultCode<${modelNameLowerCamel}> delete(Integer id) {
+    public ResultCode<${modelNameUpperCamel}> delete(Integer id) {
         ${modelNameLowerCamel}Service.deleteById(id);
         return ResultCode.getSuccessReturn(${modelNameLowerCamel});
 }
 
     @PostMapping("/update")
-    public ResultCode<${modelNameLowerCamel}> update(${modelNameUpperCamel} ${modelNameLowerCamel}) {
+    public ResultCode<${modelNameUpperCamel}> update(${modelNameUpperCamel} ${modelNameLowerCamel}) {
         ${modelNameLowerCamel}Service.update(${modelNameLowerCamel});
         return ResultCode.getSuccessReturn(${modelNameLowerCamel});
     }
 
     @PostMapping("/detail")
-    public ResultCode<${modelNameLowerCamel}> detail(Integer id) {
+    public ResultCode<${modelNameUpperCamel}> detail(Integer id) {
         ${modelNameUpperCamel} ${modelNameLowerCamel} = ${modelNameLowerCamel}Service.findById(id);
         return ResultCode.getSuccessReturn(${modelNameLowerCamel});
     }
