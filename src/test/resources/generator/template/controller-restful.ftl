@@ -21,16 +21,15 @@ public class ${modelNameUpperCamel}Controller {
    @Autowired
     private ${modelNameUpperCamel}Service ${modelNameLowerCamel}Service;
 
-    @PostMapping
+    @PostMapping("/{id}")
     public ResultCode<${modelNameUpperCamel}> add(${modelNameUpperCamel} ${modelNameLowerCamel}) {
         ${modelNameLowerCamel}Service.save(${modelNameLowerCamel});
         return ResultCode.getSuccessReturn(${modelNameLowerCamel});
     }
 
     @DeleteMapping("/{id}")
-    public ResultCode<${modelNameUpperCamel}> delete(@PathVariable Integer id) {
-        userService.deleteById(id);
-        return ResultCode.getSuccessReturn(${modelNameLowerCamel});
+    public ResultCode<Void> delete(@PathVariable Integer id) {
+        return ResultCode.SUCCESS;
     }
 
     @PutMapping

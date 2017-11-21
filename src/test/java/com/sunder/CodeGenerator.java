@@ -37,7 +37,7 @@ public class CodeGenerator {
     private static final String DATE = new SimpleDateFormat("yyyy/MM/dd").format(new Date());//@date
 
     public static void main(String[] args) {
-        genCode("panoramic_real_time_consumption");
+        genCode("panoramic_real_time_consumption_gather");
     }
 
     public static void genCode(String... tableNames) {
