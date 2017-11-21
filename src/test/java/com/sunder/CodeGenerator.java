@@ -33,11 +33,11 @@ public class CodeGenerator {
     private static final String PACKAGE_PATH_SERVICE_IMPL = BASE_PACKAGE_PATH + "/service/impl/";//生成的Service实现存放路径
     private static final String PACKAGE_PATH_CONTROLLER = BASE_PACKAGE_PATH + "/web/controller/";//生成的Controller实现存放路径
 
-    private static final String AUTHOR = "sunder";//@author
+    private static final String AUTHOR = "@author summer";//@author
     private static final String DATE = new SimpleDateFormat("yyyy/MM/dd").format(new Date());//@date
 
     public static void main(String[] args) {
-        genCode("panoramic_permission");
+        genCode("panoramic_real_time_consumption");
     }
 
     public static void genCode(String... tableNames) {
