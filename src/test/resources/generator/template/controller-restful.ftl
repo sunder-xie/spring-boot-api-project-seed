@@ -12,7 +12,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
-*${author}
+* @author ${author}
 * ${date}.
 */
 @RestController
@@ -22,24 +22,24 @@ public class ${modelNameUpperCamel}Controller {
     private ${modelNameUpperCamel}Service ${modelNameLowerCamel}Service;
 
     @PostMapping
-    public ResultCode<${modelNameLowerCamel}> add(${modelNameUpperCamel} ${modelNameLowerCamel}) {
+    public ResultCode<${modelNameUpperCamel}> add(${modelNameUpperCamel} ${modelNameLowerCamel}) {
         ${modelNameLowerCamel}Service.save(${modelNameLowerCamel});
         return ResultCode.getSuccessReturn(${modelNameLowerCamel});
     }
 
     @DeleteMapping("/{id}")
-    public ResultCode<${modelNameLowerCamel}> delete(@PathVariable Integer id) {
+    public ResultCode<${modelNameUpperCamel}> delete(@PathVariable Integer id) {
         userService.deleteById(id);
         return ResultCode.getSuccessReturn(${modelNameLowerCamel});
     }
 
     @PutMapping
-    public ResultCode<${modelNameLowerCamel}> update(${modelNameUpperCamel} ${modelNameLowerCamel}) {
+    public ResultCode<${modelNameUpperCamel}> update(${modelNameUpperCamel} ${modelNameLowerCamel}) {
         ${modelNameLowerCamel}Service.update(${modelNameLowerCamel});
         return ResultCode.getSuccessReturn(${modelNameLowerCamel});
     }
     @GetMapping("/{id}")
-    public ResultCode<${modelNameLowerCamel}> detail(@PathVariable Integer id) {
+    public ResultCode<${modelNameUpperCamel}> detail(@PathVariable Integer id) {
         ${modelNameUpperCamel} ${modelNameLowerCamel} = ${modelNameLowerCamel}Service.findById(id);
         return ResultCode.getSuccessReturn(${modelNameLowerCamel});
     }
@@ -49,6 +49,6 @@ public class ${modelNameUpperCamel}Controller {
         PageHelper.startPage(page, size);
         List<${modelNameUpperCamel}> list = ${modelNameLowerCamel}Service.findAll();
         PageInfo pageInfo = new PageInfo(list);
-        return ResultGenerator.genSuccessResult(pageInfo);
+        return ResultCode.getSuccessReturn(pageInfo);
     }
 }
